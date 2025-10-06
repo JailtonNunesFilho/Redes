@@ -1,0 +1,31 @@
+ompilação C/C++
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.out
+*.a
+*.lib
+
+# Diretórios de build
+/build/
+/bin/
+/dist/
+/Debug/
+/Release/
+
+# Arquivos temporários e logs
+*.log
+*.tmp
+
+# Configurações de IDEs comuns
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS e Windows lixo de sistema
+.DS_Store
+Thumbs.db
+
