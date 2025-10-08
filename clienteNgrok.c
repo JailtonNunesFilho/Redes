@@ -28,6 +28,7 @@ int main() {
     pthread_t listener;
     char msg[MAX_MSG];
     char hostname[256];
+    char username[50];
     int port;
 
     // 🔹 Pede o domínio e a porta do servidor (ex: ngrok)
@@ -36,6 +37,9 @@ int main() {
 
     printf("Digite a porta (ex: 19423): ");
     scanf("%d", &port);
+
+    printf("Digite seu nome de usuário: ");
+    scanf("%49s", username);
 
     // 🔹 Resolve o domínio
     struct hostent* server = gethostbyname(hostname);
@@ -60,7 +64,9 @@ int main() {
 
     getchar(); // consome o \n do scanf
     while (fgets(msg, MAX_MSG, stdin)) {
-        send(client_fd, msg, strlen(msg), 0);
+        strcat(username, ": ");
+        strcat(username, msg);
+        send(client_fd, username, strlen(username), 0);
     }
 
     close(client_fd);
