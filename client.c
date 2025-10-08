@@ -30,6 +30,11 @@ int main(){
     struct sockaddr_in sockaddr;
     pthread_t listener ;
     char msg[MAX_MSG];
+    char username[50];
+    char full_msg[MAX_MSG + 50];
+
+    printf("Digite seu nome de usuário: ");
+    scanf("%49s", username);
 
     client_fd = socket(AF_INET, SOCK_STREAM, 0) ;
     sockaddr.sin_family = AF_INET ;
@@ -41,8 +46,14 @@ int main(){
 
     pthread_create(&listener, NULL, handleMessages, &client_fd) ;
 
+    getchar();
     while(fgets(msg, MAX_MSG, stdin)) {
-        send(client_fd, msg, strlen(msg), 0);
+        full_msg[0] = '\0';
+
+        strcat(full_msg, username);
+        strcat(full_msg, ": ");
+        strcat(full_msg, msg);
+        send(client_fd, full_msg, strlen(full_msg), 0);
     }
 
     close(client_fd);

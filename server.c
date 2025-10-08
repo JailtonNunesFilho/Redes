@@ -68,7 +68,7 @@ int main() {
 
     bind(server_fd, (struct sockaddr*)&server_addr, sizeof(server_addr)) ;
     listen(server_fd, MAX_CLIENTS);
-    printf("Servidor ativo e operando: %d\n", PORT) ;
+    printf("Servidor ativo e operando na porta: %d\n", PORT) ;
 
     while ((client_fd = accept(server_fd, (struct sockaddr*)&client_addr, &socklen)))
     {

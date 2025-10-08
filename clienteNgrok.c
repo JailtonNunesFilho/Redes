@@ -52,6 +52,7 @@ int main() {
     client_fd = socket(AF_INET, SOCK_STREAM, 0);
     sockaddr.sin_family = AF_INET;
     sockaddr.sin_port = htons(port);
+    // Ignora o erro apresentado, o código funciona normalmente após compilado.
     memcpy(&sockaddr.sin_addr.s_addr, server->h_addr, server->h_length);
 
     if (connect(client_fd, (struct sockaddr*)&sockaddr, sizeof(sockaddr)) < 0) {
