@@ -29,6 +29,7 @@ int main() {
     char msg[MAX_MSG];
     char hostname[256];
     char username[50];
+    char full_msg[MAX_MSG + 50];
     int port;
 
     // 🔹 Pede o domínio e a porta do servidor (ex: ngrok)
@@ -64,9 +65,13 @@ int main() {
 
     getchar(); // consome o \n do scanf
     while (fgets(msg, MAX_MSG, stdin)) {
-        strcat(username, ": ");
-        strcat(username, msg);
-        send(client_fd, username, strlen(username), 0);
+        //resetando a variavel de mensagem
+        full_msg[0] = '\0';
+
+        strcat(full_msg, username);
+        strcat(full_msg, ": ");
+        strcat(full_msg, msg);
+        send(client_fd, full_msg, strlen(full_msg), 0);
     }
 
     close(client_fd);
